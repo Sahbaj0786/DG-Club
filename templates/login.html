@@ -11,7 +11,7 @@
     /* Top Red Section */
     .top-gradient-header {
         background: #f95959; 
-        padding: 15px 15px 80px 15px; /* Bottom padding badhayi hai tabs ke liye */
+        padding: 15px 15px 80px 15px;
         color: white;
         text-align: center;
         position: relative;
@@ -28,6 +28,7 @@
         font-weight: 900;
         font-style: italic;
         font-size: 1.5rem;
+        color: white;
     }
 
     .login-title-section {
@@ -46,7 +47,7 @@
         margin: 5px 0;
     }
 
-    /* TABS: Bilkul DGClub jaisa layout */
+    /* Tabs inside Red Header */
     .tabs-wrapper {
         display: flex;
         justify-content: space-around;
@@ -75,7 +76,6 @@
         position: relative;
     }
 
-    /* Active Tab ki niche wali white line */
     .tab.active::after {
         content: "";
         position: absolute;
@@ -93,7 +93,9 @@
         background: white;
         border-radius: 25px 25px 0 0;
         padding: 25px 20px;
-        min-height: 500px;
+        margin-top: -20px;
+        position: relative;
+        z-index: 5;
     }
     
     .input-label {
@@ -101,19 +103,18 @@
         align-items: center;
         gap: 10px;
         font-size: 1rem;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         color: #333;
     }
-
-    .input-label img { width: 22px; }
 
     .input-row {
         display: flex;
         align-items: center;
-        background: #f0f1f8;
+        background: #f8f9ff;
         border-radius: 10px;
         padding: 12px 15px;
         margin-bottom: 20px;
+        border: 1px solid #eee;
     }
 
     .country-select {
@@ -124,7 +125,6 @@
         border-right: 1px solid #d1d1d1;
         margin-right: 10px;
         font-weight: bold;
-        color: #333;
     }
 
     input {
@@ -145,6 +145,7 @@
         font-size: 1.2rem;
         font-weight: bold;
         margin-top: 10px;
+        cursor: pointer;
     }
 
     .btn-register {
@@ -159,19 +160,32 @@
         text-decoration: none;
         font-weight: bold;
     }
+
+    .footer-links {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .footer-item i {
+        display: block;
+        font-size: 1.5rem;
+        color: #f95959;
+        margin-bottom: 5px;
+    }
 </style>
 
 <div class="top-gradient-header">
     <div class="header-nav">
         <i class="fas fa-chevron-left"></i>
         <div class="logo-text">DG CLUB</div>
-        <div class="lang">🇺🇸 EN</div>
+        <div class="lang">🇮🇳 EN</div>
     </div>
     
     <div class="login-title-section">
         <h2>Log in</h2>
         <p>Please log in with your phone number or email</p>
-        <p>If you forget your password, please contact customer service</p>
     </div>
 
     <div class="tabs-wrapper">
@@ -190,3 +204,40 @@
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <input type="hidden" name="next" value="{% url 'account' %}">
+
+        <div class="input-label">
+            <i class="fas fa-mobile-alt" style="color:#f95959;"></i> Phone number
+        </div>
+        <div class="input-row">
+            <div class="country-select">+91 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></div>
+            <input type="text" name="username" placeholder="Please enter the phone number" required>
+        </div>
+
+        <div class="input-label">
+            <i class="fas fa-lock" style="color:#f95959;"></i> Password
+        </div>
+        <div class="input-row">
+            <input type="password" name="password" placeholder="Password" required>
+            <i class="fas fa-eye-slash" style="color:#ccc;"></i>
+        </div>
+
+        <div style="margin-bottom:20px; color:#666;">
+            <input type="checkbox"> Remember password
+        </div>
+
+        <button type="submit" class="btn-submit">Log in</button>
+        <a href="#" class="btn-register">Register</a>
+    </form>
+
+    <div class="footer-links">
+        <div class="footer-item">
+            <i class="fas fa-unlock-alt"></i>
+            <span>Forgot password</span>
+        </div>
+        <div class="footer-item">
+            <i class="fas fa-headset"></i>
+            <span>Customer Service</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
