@@ -90,12 +90,14 @@ LOGIN_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Admin account setup (Safe way)
+# Mobile number ko admin banane ka code
+from django.contrib.auth import get_user_model
+User = get_user_model()
 try:
-    from django.contrib.auth import get_user_model
-    def create_admin():
-        User = get_user_model()
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser('admin', 'admin@example.com', 'Admin@123')
-except Exception:
-    pass
+    # 'admin' ki jagah apna 10 digit mobile number likho
+    my_mobile = '6398982586' 
+    if not User.objects.filter(username=my_mobile).exists():
+        User.objects.create_superuser(my_mobile, 'admin@example.com', 'YourPassword@123')
+        print(f"Superuser {my_mobile} created!")
+except Exception as e:
+    print(f"Error: {e}")
