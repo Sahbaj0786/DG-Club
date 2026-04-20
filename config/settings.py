@@ -73,22 +73,3 @@ LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Admin account setup (FORCE)
-from django.contrib.auth import get_user_model
-User = get_user_model()
-try:
-    my_mobile = '6398982586'
-    if not User.objects.filter(username=my_mobile).exists():
-        User.objects.create_superuser(my_mobile, 'admin@example.com', 'test1234')
-        print("SUCCESS: Admin user created!")
-    else:
-        # Agar user pehle se hai, toh password reset kar do
-        u = User.objects.get(username=my_mobile)
-        u.set_password('test1234')
-        u.is_superuser = True
-        u.is_staff = True
-        u.save()
-        print("SUCCESS: Password updated for admin!")
-except Exception as e:
-    print(f"FAILED to create admin: {e}")
