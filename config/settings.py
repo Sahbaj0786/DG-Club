@@ -78,9 +78,9 @@ LOGIN_URL = '/login/'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Yahan se admin banega
-from django.contrib.auth import get_user_model
-User = get_user_model()
 try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
     my_mobile = '6398982586'
     if not User.objects.filter(username=my_mobile).exists():
         User.objects.create_superuser(my_mobile, 'admin@example.com', 'test1234')
