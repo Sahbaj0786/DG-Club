@@ -6,18 +6,14 @@ from pathlib import Path
 import os
 import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-nu@_9owvjln79-^ye_odz@6&fo7g$8_xr7g1zwp-4o1y_u3*j&"
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -57,7 +53,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Database connection using Neon Postgres
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('POSTGRES_URL'),
@@ -66,21 +61,13 @@ DATABASES = {
     )
 }
 
-# Password validation
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
-]
+AUTH_PASSWORD_VALIDATORS = []
 
-# Internationalization
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Static files
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -90,14 +77,12 @@ LOGIN_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Mobile number ko admin banane ka code
+# Yahan se admin banega
 from django.contrib.auth import get_user_model
 User = get_user_model()
 try:
-    # 'admin' ki jagah apna 10 digit mobile number likho
-    my_mobile = '6398982586' 
+    my_mobile = '6398982586'
     if not User.objects.filter(username=my_mobile).exists():
-        User.objects.create_superuser(my_mobile, 'admin@example.com', 'YourPassword@123')
-        print(f"Superuser {my_mobile} created!")
-except Exception as e:
-    print(f"Error: {e}")
+        User.objects.create_superuser(my_mobile, 'admin@example.com', 'test1234')
+except Exception:
+    pass
