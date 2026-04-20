@@ -3,17 +3,17 @@
 {% block content %}
 <style>
     body {
-        background-color: #f6f8fb;
+        background-color: #f7f8ff;
+        margin: 0;
+        font-family: Arial, sans-serif;
     }
     
-    .login-container {
-        padding: 0;
-    }
-    
+    /* Top Red Section */
     .top-gradient-header {
-        background: linear-gradient(180deg, #ff8a8f 0%, #ff5e62 100%);
-        padding: 20px 20px 80px 20px;
+        background: #f95959; 
+        padding: 15px 15px 80px 15px; /* Bottom padding badhayi hai tabs ke liye */
         color: white;
+        text-align: center;
         position: relative;
     }
     
@@ -21,341 +21,172 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 30px;
-    }
-    
-    .header-nav .back-btn {
-        color: white;
-        font-size: 1.2rem;
-        text-decoration: none;
-    }
-    
-    .header-nav .logo-text {
-        font-size: 1.4rem;
-        font-weight: 800;
-        font-style: italic;
-        letter-spacing: 1px;
-    }
-    
-    .header-nav .lang {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 0.9rem;
-    }
-    
-    .header-nav .lang img {
-        width: 24px;
-        border-radius: 4px;
+        font-size: 1.1rem;
     }
 
-    .subtitle-text {
-        font-size: 0.85rem;
-        line-height: 1.4;
-        opacity: 0.95;
+    .logo-text {
+        font-weight: 900;
+        font-style: italic;
+        font-size: 1.5rem;
     }
-    
+
+    .login-title-section {
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .login-title-section h2 {
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .login-title-section p {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        margin: 5px 0;
+    }
+
+    /* TABS: Bilkul DGClub jaisa layout */
     .tabs-wrapper {
         display: flex;
-        background: transparent;
-        margin-top: -30px;
-        padding: 0 15px;
+        justify-content: space-around;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0 10px;
     }
     
     .tab {
         flex: 1;
-        text-align: center;
-        padding: 15px 0;
-        font-weight: bold;
-        font-size: 1rem;
-        border-bottom: 2px solid transparent;
-        color: #8e95a5;
+        padding: 12px 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 5px;
-        background: #f6f8fb;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
     }
     
     .tab.active {
-        color: var(--primary-red);
-        border-bottom: 2px solid var(--primary-red);
-        background: #f6f8fb;
-    }
-
-    .tab i { font-size: 1.2rem; }
-
-    .form-wrapper {
-        padding: 20px;
-    }
-    
-    .form-group {
-        margin-bottom: 20px;
-    }
-    
-    .form-label {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 1rem;
-        color: var(--text-dark);
-        margin-bottom: 10px;
-    }
-    
-    .form-label i { color: var(--primary-red); font-size: 1.2rem; }
-    
-    .phone-input-group {
-        display: flex;
-        gap: 15px;
-    }
-    
-    .country-code {
-        width: 90px;
-        background: white;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-        color: var(--text-dark);
-        border: none;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-    }
-    
-    .phone-field {
-        flex: 1;
-        background: white;
-        border: none;
-        border-radius: 10px;
-        padding: 15px;
-        font-size: 1rem;
-        color: var(--text-dark);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        outline: none;
-    }
-    
-    .password-group {
+        color: white;
+        font-weight: bold;
         position: relative;
     }
-    
-    .password-group input {
-        width: 100%;
-        background: white;
-        border: none;
-        border-radius: 10px;
-        padding: 15px;
-        font-size: 1rem;
-        color: var(--text-dark);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        outline: none;
-    }
-    
-    .password-group .toggle-eye {
+
+    /* Active Tab ki niche wali white line */
+    .tab.active::after {
+        content: "";
         position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-muted);
-        font-size: 1.2rem;
+        bottom: 0;
+        width: 80%;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
     }
 
-    .remember-row {
+    .tab i { font-size: 1.4rem; }
+
+    /* White Content Box */
+    .form-wrapper {
+        background: white;
+        border-radius: 25px 25px 0 0;
+        padding: 25px 20px;
+        min-height: 500px;
+    }
+    
+    .input-label {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 30px;
-        color: var(--text-dark);
-        font-size: 0.9rem;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        color: #333;
     }
-    
-    .remember-row input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 1px solid var(--border-color);
-        appearance: none;
+
+    .input-label img { width: 22px; }
+
+    .input-row {
+        display: flex;
+        align-items: center;
+        background: #f0f1f8;
+        border-radius: 10px;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+    }
+
+    .country-select {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding-right: 10px;
+        border-right: 1px solid #d1d1d1;
+        margin-right: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input {
+        border: none;
+        background: transparent;
+        width: 100%;
         outline: none;
-        position: relative;
-    }
-    .remember-row input[type="checkbox"]:checked {
-        background: var(--primary-red);
-        border-color: var(--primary-red);
-    }
-    .remember-row input[type="checkbox"]:checked::after {
-        content: '\2713';
-        color: white;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 12px;
+        font-size: 1rem;
     }
 
     .btn-submit {
-        background: linear-gradient(135deg, #ff8a8f 0%, #ff5e62 100%);
+        background: #f0f0f0; 
+        color: #bbbbbb;
         width: 100%;
-        color: white;
         border: none;
         padding: 15px;
         border-radius: 30px;
         font-size: 1.2rem;
         font-weight: bold;
-        box-shadow: 0 4px 15px rgba(255, 94, 98, 0.3);
-        margin-bottom: 20px;
-        cursor: pointer;
+        margin-top: 10px;
     }
 
     .btn-register {
-        background: white;
-        width: 100%;
-        color: var(--primary-red);
-        border: 1px solid var(--primary-red);
-        padding: 15px;
-        border-radius: 30px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
         display: block;
+        width: 100%;
         text-align: center;
+        border: 1px solid #f95959;
+        color: #f95959;
+        padding: 12px;
+        border-radius: 30px;
+        margin-top: 15px;
         text-decoration: none;
-    }
-    
-    .bottom-links {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 40px;
-    }
-    
-    .bottom-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        color: var(--text-dark);
-        text-decoration: none;
-        font-size: 0.85rem;
-    }
-    
-    .bottom-link .icon-box {
-        width: 50px;
-        height: 50px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.5rem;
-        color: var(--primary-red);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    
-    .site-pill {
-        width: 120px;
-        margin: 40px auto 20px auto;
-        padding: 8px;
-        border-radius: 20px;
-        border: 1px solid rgba(0,0,0,0.1);
-        text-align: center;
-        font-size: 0.9rem;
-        color: rgba(0,0,0,0.5);
-    }
-    
-    /* Override base styles that break this layout */
-    input[type="text"], input[type="password"] {
-        margin: 0 !important;
-        padding: 15px !important;
+        font-weight: bold;
     }
 </style>
 
-<div class="login-container">
-    <div class="top-gradient-header">
-        <div class="header-nav">
-            <a href="#" class="back-btn"><i class="fas fa-chevron-left"></i></a>
-            <div class="logo-text">DG CLUB</div>
-            <div class="lang">
-                <span style="font-size:1.2rem;">🇺🇸</span> EN
-            </div>
-        </div>
-        <div class="subtitle-text">
-            Please log in with your phone number or email<br>
-            If you forget your password, please contact customer service
-        </div>
+<div class="top-gradient-header">
+    <div class="header-nav">
+        <i class="fas fa-chevron-left"></i>
+        <div class="logo-text">DG CLUB</div>
+        <div class="lang">🇺🇸 EN</div>
     </div>
     
+    <div class="login-title-section">
+        <h2>Log in</h2>
+        <p>Please log in with your phone number or email</p>
+        <p>If you forget your password, please contact customer service</p>
+    </div>
+
     <div class="tabs-wrapper">
         <div class="tab active">
-            <i class="fas fa-mobile-alt" style="color:var(--primary-red);"></i>
-            phone number
+            <i class="fas fa-mobile-alt"></i>
+            <span>phone number</span>
         </div>
         <div class="tab">
             <i class="fas fa-envelope"></i>
-            Email Login
+            <span>Email Login</span>
         </div>
-    </div>
-    
-    <div class="form-wrapper">
-        <!-- Django's auth views require a POST to /login/ -->
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <!-- This triggers a redirect to /account/ upon successful login -->
-            <input type="hidden" name="next" value="{% url 'account' %}">
-            
-            <div class="form-group">
-                <div class="form-label"><i class="fas fa-mobile-alt" style="background:#ff5e62; color:white; padding:4px 8px; border-radius:5px;"></i> Phone number</div>
-                <div class="phone-input-group">
-                    <div class="country-code">+91 <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 0.8rem; color: #8e95a5;"></i></div>
-                    <!-- Using username as field name for Django builtin auth -->
-                    <input type="text" name="username" class="phone-field" placeholder="6398982586" required autofocus>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="form-label"><i class="fas fa-lock" style="background:#ff5e62; color:white; padding:4px 6px; border-radius:5px;"></i> Password</div>
-                <div class="password-group">
-                    <input type="password" name="password" id="login-password" placeholder="Password" required>
-                    <i class="fas fa-eye-slash toggle-eye" onclick="togglePassword()"></i>
-                </div>
-            </div>
-            
-            <div class="remember-row">
-                <input type="checkbox" id="remember">
-                <label for="remember">Remember password</label>
-            </div>
-            
-            <button type="submit" class="btn-submit">Log in</button>
-            <a href="#" class="btn-register">Register</a>
-        </form>
-        
-        <div class="bottom-links">
-            <a href="#" class="bottom-link">
-                <div class="icon-box"><i class="fas fa-lock"></i></div>
-                <span>Forgot password</span>
-            </a>
-            <a href="#" class="bottom-link">
-                <div class="icon-box"><i class="fas fa-envelope-open-text"></i></div>
-                <span>Customer Service</span>
-            </a>
-        </div>
-        
-        <div class="site-pill">dgclub.me</div>
     </div>
 </div>
 
-<script>
-function togglePassword() {
-    var pwdInput = document.getElementById('login-password');
-    var eyeIcon = document.querySelector('.toggle-eye');
-    if (pwdInput.type === "password") {
-        pwdInput.type = "text";
-        eyeIcon.classList.remove('fa-eye-slash');
-        eyeIcon.classList.add('fa-eye');
-    } else {
-        pwdInput.type = "password";
-        eyeIcon.classList.remove('fa-eye');
-        eyeIcon.classList.add('fa-eye-slash');
-    }
-}
-</script>
-{% endblock %}
+<div class="form-wrapper">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{% url 'account' %}">
