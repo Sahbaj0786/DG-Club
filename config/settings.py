@@ -13,6 +13,7 @@ SECRET_KEY = "django-insecure-nu@_9owvjln79-^ye_odz@6&fo7g$8_xr7g1zwp-4o1y_u3*j&
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://dg-club.vercel.app']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
