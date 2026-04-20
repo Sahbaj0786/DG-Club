@@ -122,3 +122,9 @@ STATIC_URL = "static/"
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
+
+# Isse admin account khud ban jayega
+from django.contrib.auth import get_user_model
+User = get_user_model()
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@example.com', 'Admin@123')
